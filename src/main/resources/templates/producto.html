@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ES" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title th:text="${producto.nombre} + ' - BioAire'">Ventilador Turbo 222 - BioAire</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/producto.css}">
+</head>
+
+<body>
+    <header>
+        <a th:href="@{/carrito}" class="cart-button">
+            <img th:src="@{/public/img/shopping-car.svg}" alt="Carrito">
+        </a>
+        <nav class="sidebar">
+            <ul>
+                <img th:src="@{/public/img/Bioaire-Logo.avif}" alt="BioAire-Logo" id="logo-principal">
+                <li><a th:href="@{/}">Inicio</a></li>
+                <li><a th:href="@{/catalogo.html}">Ver catalogo</a></li>
+                <li><a th:href="@{/blog.html}">Blog</a></li>
+                <li><a th:href="@{/pq.html}">Preguntas Frecuentes</a></li>
+                <li class="salir-nav" style="display: none;" onclick="cerrarSidebar()">Salir</li>
+            </ul>
+        </nav>
+        <div class="toggle" onclick="verSidebar()">
+            <img th:src="@{/public/img/toggle.svg}" alt="tg" width="30px" height="30px">
+        </div>
+    </header>
+
+    <main>
+
+        <div class="breadcrumb">
+            <a th:href="@{/}">Inicio</a>
+            <span>></span>
+            <a th:href="@{/catalogo.html}">Catalogo</a>
+            <span>></span>
+            <span th:text="${producto.nombre}">Ventilador Turbo 222</span>
+        </div>
+
+        <section class="producto-detalle">
+            <div class="galeria-producto">
+                <img id="mainImage" th:src="@{${producto.imagenUrl}}" th:alt="${producto.nombre}"
+                    class="imagen-principal">
+                <div class="miniaturas">
+                    <img th:src="@{${producto.imagenUrl}}" alt="Vista 1" onclick="changeImage(this.src)">
+                    <img th:if="${producto.imagenUrl2 != null and !producto.imagenUrl2.isEmpty()}"
+                        th:src="@{${producto.imagenUrl2}}" alt="Vista 2" onclick="changeImage(this.src)">
+                    <img th:if="${producto.imagenUrl3 != null and !producto.imagenUrl3.isEmpty()}"
+                        th:src="@{${producto.imagenUrl3}}" alt="Vista 3" onclick="changeImage(this.src)">
+                </div>
+            </div>
+
+            <div class="info-producto">
+                <h1 class="titulo-producto" th:text="${producto.nombre}">Ventilador Turbo 222</h1>
+                <p class="codigo-producto" th:text="'Código: ' + ${producto.id}">Código: VT-222-2025</p>
+
+                <div class="rating">
+                    <span class="estrellas" th:text="'★ ' + ${promedio}"></span>
+                    <span class="valoraciones" th:text="'(' + ${totalComentarios} + ' valoraciones)'">(128
+                        valoraciones)</span>
+                </div>
+
+                <div class="precio-section">
+                    <div th:if="${producto.descuento != null && producto.descuento != 0}">
+                        <div class="precio-section">
+                            <p class="precio-actual" th:text="'S/. ' + ${producto.precioPostDescuento}">S/. 149.00</p>
+                            <span class="descuento" th:text="${producto.descuento} + '% OFF'">33% OFF</span>
+                        </div>
+                        <p class="precio-descuento" th:text="'S/. ' + ${producto.precio}">S/. 99.00</p>
+                    </div>
+                    <div th:if="${producto.descuento == null || producto.descuento == 0}">
+                        <p class="precio-actual" th:text="'S/. ' + ${producto.precio}">S/. 99.00</p>
+                    </div>
+                </div>
+
+                <div class="stock-info">
+                    <p class="stock-disponible">Stock disponible: <strong th:text="${producto.stock} + ' unidades'">24
+                            unidades</strong></p>
+                    <p class="envio">Envíos a todo Tarapoto</p>
+                </div>
+
+
+                <div class="cantidad-selector">
+                    <form th:action="@{/carrito/agregar}" method="post">
+                        <input type="hidden" name="productoId" th:value="${producto.id}">
+                        <label>Cantidad:</label>
+                        <div class="selector">
+                            <button type="button" class="btn-menos" onclick="quitar()">-</button>
+                            <input type="number" name="cantidad" id="cantidad" value="1" min="1"
+                                th:max="${producto.stock}" readonly>
+                            <button type="button" class="btn-mas" onclick="aumentar()">+</button>
+                        </div>
+                        <div class="botones-compra">
+                            <button type="submit">Agregar al carrito</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="garantia-info">
+                    <div class="info-item">
+                        <img th:src="@{/public/img/fan1.png}" alt="Garantía" class="icono-info">
+                        <div>
+                            <strong>Garantía</strong>
+                            <p th:text="${producto.garantia} + ' meses'">2 años de garantía del fabricante</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <img th:src="@{/public/img/fan1.png}" alt="Devolución" class="icono-info">
+                        <div>
+                            <strong>Devolución gratis</strong>
+                            <p>Tienes 30 días desde que lo recibes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="caracteristicas">
+            <div class="section-title">
+                <h2>Características del producto</h2>
+            </div>
+            <div class="lista-caracteristicas">
+                <div class="caracteristica-item">
+                    <strong>Marca:</strong>
+                    <span th:text="${producto.marca}">BioAire</span>
+                </div>
+                <div class="caracteristica-item">
+                    <strong>Modelo:</strong>
+                    <span th:text="${producto.modelo}">Turbo 222</span>
+                </div>
+                <div class="caracteristica-item">
+                    <strong>Número de aspas:</strong>
+                    <span th:text="${producto.numeroAspas}">3 aspas</span>
+                </div>
+                <div class="caracteristica-item">
+                    <strong>Velocidades:</strong>
+                    <span th:text="${producto.velocidad}">3 velocidades ajustables</span>
+                </div>
+                <div class="caracteristica-item">
+                    <strong>Potencia:</strong>
+                    <span th:text="${producto.potencia}">75W</span>
+                </div>
+                <div class="caracteristica-item">
+                    <strong>Diámetro:</strong>
+                    <span th:text="${producto.diametro}">52 pulgadas</span>
+                </div>
+                <div class="caracteristica-item">
+                    <strong>Tipo de instalación:</strong>
+                    <span th:text="${producto.tipoInstalacion}">Techo</span>
+                </div>
+                <div class="caracteristica-item">
+                    <strong>Material:</strong>
+                    <span th:text="${producto.material}">Metal y plástico ABS</span>
+                </div>
+                <div class="caracteristica-item">
+                    <strong>Voltaje:</strong>
+                    <span th:text="${producto.voltaje}">220V</span>
+                </div>
+                <div class="caracteristica-item">
+                    <strong>Control remoto:</strong>
+                    <span th:text="${producto.controlRemoto} ? 'Sí, incluido' : 'No'">Sí, incluido</span>
+                </div>
+                <div class="caracteristica-item">
+                    <strong>Peso:</strong>
+                    <span th:text="${producto.peso}">4.5 kg</span>
+                </div>
+                <div class="caracteristica-item">
+                    <strong>Garantía:</strong>
+                    <span th:text="${producto.garantia}">2 años</span>
+                </div>
+            </div>
+
+            <div class="descripcion-completa">
+                <h3>Descripción</h3>
+                <p th:text="${producto.descripcion}">El Ventilador Turbo 222 es la solución perfecta...</p>
+            </div>
+        </section>
+
+        <section class="productos-relacionados">
+            <h2>Productos relacionados</h2>
+            <div class="productos">
+                <div th:each="rel : ${relacionados}">
+                    <img th:src="@{${rel.imagenUrl}}" th:alt="${rel.nombre}">
+                    <h3 th:text="${rel.nombre}">Ventilador Power 333</h3>
+                    <p th:text="${rel.descripcion}">Ventilador de 4 aspas</p>
+                    <div>
+                        <p>Precio</p>
+                        <p th:text="'S/.' + ${rel.precio}">S/.120.50</p>
+                        <a th:href="@{/producto/{id}(id=${rel.id})}"><button>Ver producto</button></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="comentarios">
+            <h2>Opiniones del producto</h2>
+            <!-- Mock comments for now, or iterate if implemented -->
+            <div class="resumen-rating">
+                <div class="rating-general">
+                    <span class="estrellas" th:text="'★ ' + ${promedio}"></span>
+                    <p th:text="'' + ${totalComentarios} + ' opiniones'">4 opiniones</p>
+                </div>
+            </div>
+
+            <div class="lista-comentarios">
+                <div class="comentario" th:each="comentario : ${producto.comentarios}">
+                    <div class="comentario-header">
+                        <strong class="nombre-usuario" th:text="${comentario.autor}">María González</strong>
+                        <span class="fecha" th:text="${comentario.fecha}">15 de octubre, 2025</span>
+                    </div>
+                    <div class="estrellas-comentario" th:text="${comentario.puntuacion} + '/5'">★★★★★</div>
+                    <p class="texto-comentario" th:text="${comentario.texto}">Excelente ventilador...</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="agregar-comentario">
+            <h2>Deja tu opinión</h2>
+            <form id="nuevo-comentario" class="form-comentario"
+                th:action="@{/producto/{id}/comentario(id=${producto.id})}" method="post">
+                <label for="autor">Nombre</label>
+                <input id="autor" name="autor" type="text" placeholder="Tu nombre" required>
+
+                <label for="puntuacion">Puntuación</label>
+                <select id="puntuacion" name="puntuacion">
+                    <option value="5">5 - Excelente</option>
+                    <option value="4">4 - Muy bueno</option>
+                    <option value="3">3 - Bueno</option>
+                    <option value="2">2 - Regular</option>
+                    <option value="1">1 - Malo</option>
+                </select>
+
+                <label for="texto">Comentario</label>
+                <textarea id="texto" name="texto" rows="4" placeholder="Escribe tu opinión aquí..." required></textarea>
+
+                <button type="submit" class="btn-enviar">Publicar comentario</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>Otros enlaces de interes</p>
+        <nav>
+            <a href="https://google.com">Google</a>
+            <a href="https://facebook.com">Nuestro Facebook</a>
+            <a th:href="@{/404.html}">Politica de privacidad</a>
+            <a href="https://www.shoppiingperu.com/">Pagina oficial</a>
+            <a href="https://github.com/Brayan2008">Mi GitHub</a>
+            <a th:href="@{/admin/producto/nuevo}">Admin</a>
+        </nav>
+        </nav>
+        <div id="despedida">
+            <p>2025 - Jugando con html, llorando con css, perdido con js</p>
+            <p>Hecho con horas de sueño por: <span>Bmaster</span></p>
+        </div>
+    </footer>
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/scripts.js}"></script>
+    <script>
+
+        function changeImage(src) {
+            document.getElementById('mainImage').src = src;
+        }
+
+        function aumentar() {
+            let input = document.getElementById('cantidad');
+            let max = parseInt(input.getAttribute('max'));
+            let value = parseInt(input.value);
+            if (value < max) {
+                input.value = value + 1;
+            }
+        }
+
+        function quitar() {
+            let input = document.getElementById('cantidad');
+            let value = parseInt(input.value);
+            if (value > 1) {
+                input.value = value - 1;
+            }
+        }
+    </script>
+</body>
+
+</html>

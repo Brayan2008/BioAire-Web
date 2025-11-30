@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ES" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <title>BioAire - Tarapoto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/catalogoStyles.css}">
+  <script th:src="@{/js/jquery.js}"></script>
+</head>
+
+<body>
+  <header>
+    <a th:href="@{/carrito}" class="cart-button">
+      <img th:src="@{/public/img/shopping-car.svg}" alt="Carrito">
+    </a>
+
+    <nav class="sidebar">
+      <ul>
+        <img th:src="@{/public/img/Bioaire-Logo.avif}" alt="BioAire-Logo" id="logo-principal">
+        <li><a th:href="@{/}">Inicio</a></li>
+        <li><a href="#sub-header">Ver catalogo</a></li>
+        <li><a th:href="@{/blog.html}">Blog</a></li>
+        <li><a th:href="@{/pq.html}">Preguntas Frecuentes</a></li>
+        <li class="salir-nav" style="display: none;" onclick="cerrarSidebar()">Salir</li>
+      </ul>
+    </nav>
+    <div class="toggle" onclick="verSidebar()">
+      <img th:src="@{/public/img/toggle.svg}" alt="tg" style="margin-top: 1vh; align-self: center; justify-self: center;"
+        width="30px" height="30px">
+    </div>
+
+    <div id="anuncios">
+      <h3 class="title">
+        Aprovecha nuestras ultimas ofertas
+      </h3>
+      <div>
+        <p>
+          Hasta 50% de descuento en ventiladores de mesa
+        </p>
+        <img th:src="@{/public/img/fan1.png}" alt="Ventilador 1">
+        <img th:src="@{/public/img/fan1.png}" alt="Ventilador 1">
+        <img th:src="@{/public/img/fan1.png}" alt="Ventilador 1">
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="busqueda">
+      <h2>
+        <span id="a">B</span>
+        <span id="b">u</span>
+        <span id="c">s</span>
+        <span id="d">c</span>
+        <span id="e">a</span>
+        <span id="f">r</span>
+        <p></p>
+        <span id="h">P</span>
+        <span id="i">r</span>
+        <span id="j">o</span>
+        <span id="k">d</span>
+        <span id="l">u</span>
+        <span id="m">c</span>
+        <span id="n">t</span>
+        <span id="o">o</span>
+        <span id="p">s</span>
+      </h2>
+      <form th:action="@{/catalogo}" method="get">
+          <input class="barra" type="text" name="query" placeholder="Aire acondicionado estoy hot...">
+      </form>
+    </section>
+    <section class="listado">
+      <div class="productos">
+        <div th:each="producto : ${productos}">
+          <img th:src="@{${producto.imagenUrl}}" alt="img1">
+          <h3 th:text="${producto.nombre}">Ventilador Turbo 222</h3>
+          <p th:text="${producto.descripcion}">Ventilador de 3 aspas</p>
+          <div>
+            <p>Precio</p>
+            <p th:text="'S/.' + ${producto.precioPostDescuento}">S/.99.00</p>
+            <a th:href="@{/producto/{id}(id=${producto.id})}"><button class="ver-producto">Ver producto</button></a>
+          </div>
+        </div>
+        <!-- Fallback if empty -->
+        <div th:if="${#lists.isEmpty(productos)}">
+            <p>No se encontraron productos.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Otros enlaces de interes</p>
+    <nav>
+      <a href="https://google.com">Google</a>
+      <a href="https://facebook.com">Nuestro Facebook</a>
+      <a th:href="@{/404.html}">Politica de privacidad</a>
+      <a href="https://www.shoppiingperu.com/">Pagina oficial</a>
+      <a href="https://github.com/Brayan2008">Mi GitHub</a>
+      <a th:href="@{/admin/producto/nuevo}">Admin</a>
+    </nav>
+    <div id="despedida">
+      <p>2025 - Jugando con html, llorando con css, perdido con js</p>
+      <p>Hecho con horas de sueño por: <span>Bmaster</span></p>
+    </div>
+  </footer>
+
+  <script th:src="@{/js/jquery.js}"></script>
+  <script th:src="@{/js/scripts.js}"></script>
+</body>
+
+</html>

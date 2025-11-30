@@ -1,0 +1,154 @@
+body {
+    background-color: #f4f7f6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+.admin-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    background-color: transparent;
+    height: auto;
+}
+
+.admin-header h1 {
+    color: #2c3e50;
+    margin: 0;
+    font-size: 2rem;
+}
+
+.btn-back {
+    margin-top: 2rem;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    padding: 1rem 2rem;
+    border: 1px solid #ddd;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+    background: rgb(212, 132, 13);
+}
+
+.btn-back:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.form-container {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.product-form .form-group {
+    margin-bottom: 20px;
+}
+
+.product-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #444;
+}
+
+.product-form input[type="text"],
+.product-form input[type="number"],
+.product-form textarea,
+.product-form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+}
+
+.product-form input:focus,
+.product-form textarea:focus,
+.product-form select:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.file-upload-wrapper {
+    padding: 0.5rem 0;
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.product-form input[type="file"] {
+    padding: 10px;
+    background: #f8f9fa;
+    border: 1px dashed #ccc;
+    width: 100%;
+    border-radius: 1rem;
+}
+
+small {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.form-actions {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.btn-save {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    width: auto;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    align-self: center;
+}
+
+.btn-save:hover {
+    background-color: #27ae60;
+}
+
+.btn-save:active {
+    transform: translateY(1px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .admin-container {
+        padding: 10px;
+        margin: 20px auto;
+    }
+    
+    .form-container {
+        padding: 20px;
+    }
+}

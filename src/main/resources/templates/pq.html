@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ES" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <title>Preguntas Frecuentes | BioAire - Tarapoto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/pqStyles.css}">
+</head>
+
+<body>
+  <header>
+    <a th:href="@{/carrito}" class="cart-button">
+      <img th:src="@{/public/img/shopping-car.svg}" alt="Carrito">
+    </a>
+    <nav class="sidebar">
+      <ul>
+        <img th:src="@{/public/img/Bioaire-Logo.avif}" alt="BioAire-Logo" id="logo-principal">
+        <li><a th:href="@{/}">Inicio</a></li>
+        <li><a th:href="@{/catalogo.html}">Ver catalogo</a></li>
+        <li><a th:href="@{/blog.html}">Blog</a></li>
+        <li><a th:href="@{/pq.html}">Preguntas Frecuentes</a></li>
+        <li class="salir-nav" style="display: none;" onclick="cerrarSidebar()">Salir</li>
+      </ul>
+    </nav>
+    <div class="toggle" onclick="verSidebar()">
+      <img th:src="@{/public/img/toggle.svg}" alt="tg" style="margin-top: 1vh; align-self: center; justify-self: center;"
+        width="30px" height="30px">
+    </div>
+
+    <div id="anuncios">
+      <h3 class="title">
+        ¿Tienes dudas sobre nuestros productos?
+      </h3>
+      <div>
+        <p>
+          Aquí resolvemos todas tus preguntas
+        </p>
+        <img th:src="@{/public/img/fan1.png}" alt="Ventilador 1">
+        <img th:src="@{/public/img/fan1.png}" alt="Ventilador 1">
+        <img th:src="@{/public/img/fan1.png}" alt="Ventilador 1">
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro-pq">
+      <h2>
+        <span id="a">P</span>
+        <span id="b">r</span>
+        <span id="c">e</span>
+        <span id="d">g</span>
+        <span id="e">u</span>
+        <span id="f">n</span>
+        <span id="g">t</span>
+        <span id="h">a</span>
+        <span id="i">s</span>
+        <p> </p>
+        <span id="j">F</span>
+        <span id="k">r</span>
+        <span id="l">e</span>
+        <span id="m">c</span>
+        <span id="n">u</span>
+        <span id="o">e</span>
+        <span id="p">n</span>
+        <span id="q">t</span>
+        <span id="r">e</span>
+        <span id="s">s</span>
+      </h2>
+      <p class="descripcion">
+        Encuentra respuestas rápidas a las preguntas más comunes sobre nuestros ventiladores y aires acondicionados
+      </p>
+    </section>
+
+    <section class="contenido-pq">
+      <div class="categorias-pq">
+        <h3>Categorías</h3>
+        <div class="categoria-item">
+          <h4>Ventiladores</h4>
+          <ul>
+            <li>Instalación</li>
+            <li>Mantenimiento</li>
+            <li>Garantía</li>
+            <li>Especificaciones</li>
+          </ul>
+        </div>
+        <div class="categoria-item">
+          <h4>Aires Acondicionados</h4>
+          <ul>
+            <li>Eficiencia energética</li>
+            <li>Instalación profesional</li>
+            <li>Reparaciones</li>
+            <li>Modelos disponibles</li>
+          </ul>
+        </div>
+        <div class="categoria-item">
+          <h4>Envíos y Garantía</h4>
+          <ul>
+            <li>Tiempos de entrega</li>
+            <li>Políticas de devolución</li>
+            <li>Servicio técnico</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="preguntas-respuestas">
+        <div class="pregunta-item">
+          <h3>¿Qué ventilador es mejor para mi habitación?</h3>
+          <p>
+            El tamaño del ventilador depende del área de tu habitación. Para habitaciones de 10-15 m², recomendamos
+            ventiladores de 42-48 pulgadas. Para espacios más grandes, considera nuestros modelos de 52-60 pulgadas con
+            mayor potencia.
+          </p>
+        </div>
+
+        <div class="pregunta-item">
+          <h3>¿Incluyen instalación los ventiladores de techo?</h3>
+          <p>
+            Sí, todos nuestros ventiladores de techo incluyen instalación profesional gratuita. Nuestro equipo técnico
+            se encarga de la instalación segura y garantiza el correcto funcionamiento del equipo.
+          </p>
+        </div>
+
+        <div class="pregunta-item">
+          <h3>¿Cuánto consume un aire acondicionado?</h3>
+          <p>
+            Nuestros aires acondicionados con tecnología inverter consumen entre 30-50% menos energía que los modelos
+            convencionales. El consumo específico depende del BTU y la eficiencia energética del modelo elegido.
+          </p>
+        </div>
+
+        <div class="pregunta-item">
+          <h3>¿Qué garantía tienen los productos?</h3>
+          <p>
+            Todos nuestros ventiladores tienen garantía de 2-5 años según el modelo. Los aires acondicionados incluyen
+            1-3 años de garantía total más 5 años adicionales en el compresor. También ofrecemos servicio técnico
+            especializado.
+          </p>
+        </div>
+
+        <div class="pregunta-item">
+          <h3>¿Realizan mantenimiento preventivo?</h3>
+          <p>
+            Sí, ofrecemos planes de mantenimiento preventivo para aires acondicionados que incluyen limpieza de filtros,
+            revisión del gas refrigerante y optimización del rendimiento. Para ventiladores, brindamos asesoría sobre
+            limpieza y cuidado.
+          </p>
+        </div>
+
+        <div class="pregunta-item">
+          <h3>¿Cuál es el tiempo de entrega?</h3>
+          <p>
+            Las entregas en Tarapoto se realizan en 24-48 horas. Para provincias cercanas, el tiempo es de 3-5 días
+            hábiles. La instalación se programa según tu disponibilidad, generalmente dentro de las 72 horas posteriores
+            a la entrega.
+          </p>
+        </div>
+
+        <div class="pregunta-item">
+          <h3>¿Puedo cambiar el producto si no me convence?</h3>
+          <p>
+            Tienes 15 días para cambios por otro modelo, siempre que el producto esté en perfectas condiciones y con
+            embalaje original. Los productos con instalación solo aplican para cambio por defectos de fábrica.
+          </p>
+        </div>
+
+        <div class="pregunta-item">
+          <h3>¿Qué diferencia hay entre los modelos de ventiladores?</h3>
+          <p>
+            Nuestros modelos varían en velocidad (200-1800 RPM), número de aspas (3-6), materiales (plástico, metal,
+            madera) y características especiales como control remoto, luces LED integradas y motores silenciosos.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contacto-adicional recuadro">
+      <img th:src="@{/public/img/aire-acodicionado.jpg}" alt="Aire acondicionado">
+        <div class="centrar">
+        <h2>¿No encontraste tu respuesta?</h2>
+        <p>
+          Nuestro equipo de atención al cliente está listo para ayudarte con cualquier consulta específica sobre
+          nuestros productos. Contáctanos para recibir asesoría personalizada.
+        </p>
+        <button onclick="mostrarContacto()">Contactar ahora</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Otros enlaces de interes</p>
+    <nav>
+      <a href="https://google.com">Google</a>
+      <a href="https://facebook.com">Nuestro Facebook</a>
+      <a th:href="@{/404.html}">Politica de privacidad</a>
+      <a href="https://www.shoppiingperu.com/">Pagina oficial</a>
+      <a href="https://github.com/Brayan2008">Mi GitHub</a>
+      <a th:href="@{/admin/producto/nuevo}">Admin</a>
+    </nav>
+    <div id="despedida">
+      <p>2025 - Jugando con html, llorando con css, perdido con js</p>
+      <p>Hecho con horas de sueño por: <span>Bmaster</span></p>
+    </div>
+  </footer>
+  <script th:src="@{/js/jquery.js}"></script>
+  <script th:src="@{/js/scripts.js}"></script>
+</body>
+
+</html>

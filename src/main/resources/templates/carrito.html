@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ES" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>Carrito de Compras | BioAire - Tarapoto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/catalogoStyles.css}">
+    <style>
+        .carrito-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .carrito-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .carrito-table th, .carrito-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .carrito-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+        .carrito-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        .btn-eliminar {
+            color: #dc3545;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .btn-eliminar:hover {
+            text-decoration: underline;
+        }
+        .total-section {
+            text-align: right;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .btn-checkout {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .btn-checkout:hover {
+            background-color: #218838;
+        }
+        .btn-seguir {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .empty-cart {
+            text-align: center;
+            padding: 3rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a th:href="@{/carrito}" class="cart-button">
+            <img th:src="@{/public/img/shopping-car.svg}" alt="Carrito">
+        </a>
+        <nav class="sidebar">
+            <ul>
+                <img th:src="@{/public/img/Bioaire-Logo.avif}" alt="BioAire-Logo" id="logo-principal">
+                <li><a th:href="@{/}">Inicio</a></li>
+                <li><a th:href="@{/catalogo.html}">Ver catalogo</a></li>
+                <li><a th:href="@{/blog.html}">Blog</a></li>
+                <li><a th:href="@{/pq.html}">Preguntas Frecuentes</a></li>
+                <li class="salir-nav" style="display: none;" onclick="cerrarSidebar()">Salir</li>
+            </ul>
+        </nav>
+        <div class="toggle" onclick="verSidebar()">
+            <img th:src="@{/public/img/toggle.svg}" alt="tg" style="margin-top: 1vh; align-self: center; justify-self: center;"
+                width="30px" height="30px">
+        </div>
+        
+        <div id="anuncios">
+            <h3 class="title">Tu Carrito de Compras</h3>
+            <div>
+                <p>Revisa tus productos antes de finalizar</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="carrito-container">
+        <div th:if="${items.empty}" class="empty-cart">
+            <h2>Tu carrito está vacío</h2>
+            <p>¡Agrega algunos productos increíbles!</p>
+            <a th:href="@{/catalogo.html}" class="btn-seguir">Ir al catálogo</a>
+        </div>
+
+        <div th:unless="${items.empty}">
+            <table class="carrito-table">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="item : ${items}">
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <img th:if="${item.producto.imagenUrl != null}" th:src="@{${item.producto.imagenUrl}}" alt="Img" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
+                                <span th:text="${item.producto.nombre}">Producto</span>
+                            </div>
+                        </td>
+                        <td th:text="'S/. ' + ${item.producto.precio}">0.00</td>
+                        <td th:text="${item.cantidad}">1</td>
+                        <td th:text="'S/. ' + ${item.total}">0.00</td>
+                        <td><a th:href="@{/carrito/eliminar/{id}(id=${item.producto.id})}" class="btn-eliminar">Eliminar</a></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="total-section">
+                Total: <span th:text="'S/. ' + ${total}">0.00</span>
+            </div>
+
+            <div class="carrito-actions">
+                <a th:href="@{/catalogo.html}" class="btn-seguir">← Seguir comprando</a>
+                <a th:href="@{/carrito/checkout}" class="btn-checkout">Finalizar Compra</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Otros enlaces de interes</p>
+        <nav>
+            <a href="https://google.com">Google</a>
+            <a href="https://facebook.com">Nuestro Facebook</a>
+            <a th:href="@{/404.html}">Politica de privacidad</a>
+            <a href="https://www.shoppiingperu.com/">Pagina oficial</a>
+                  <a href="https://github.com/Brayan2008">Mi GitHub</a>
+      <a th:href="@{/admin/producto/nuevo}">Admin</a>
+    </nav>
+        </nav>
+        <div id="despedida">
+            <p>2025 - Jugando con html, llorando con css, perdido con js</p>
+            <p>Hecho con horas de sueño por: <span>Bmaster</span></p>
+        </div>
+    </footer>
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/scripts.js}"></script>
+</body>
+
+</html>

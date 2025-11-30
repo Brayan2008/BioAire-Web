@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ES" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>¿Por qué elegir un buen ventilador? | Blog BioAire</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/blog.css}">
+    <style>
+        .blog-content {
+            max-width: 1000px;
+            width: 90%;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-content h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-content h2 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid goldenrod;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .blog-content p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .date {
+            color: #888 !important;
+            font-style: italic;
+            margin-bottom: 2rem !important;
+        }
+
+        /* Layout flexible para imagen + texto */
+        .blog-section {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .blog-img {
+            width: 45%;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .blog-img:hover {
+            transform: scale(1.02);
+        }
+
+        .blog-section p {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: goldenrod;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        ul li {
+            margin-bottom: 0.8rem;
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        button {
+            background-color: goldenrod;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        button:hover {
+            background-color: #daa520;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .blog-content {
+                width: 95%;
+                padding: 1.5rem;
+                margin: 1rem auto;
+            }
+
+            .blog-content h1 {
+                font-size: 2rem;
+            }
+
+            .blog-section {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            /* Para la segunda sección (texto primero, imagen después), 
+               invertimos el orden en móvil para que la imagen quede arriba si se desea,
+               o lo dejamos normal. Aquí usaremos column-reverse para que la imagen (que está segunda en el HTML)
+               suba, si queremos consistencia visual de Imagen -> Texto. */
+            .blog-section.reverse-mobile {
+                flex-direction: column-reverse;
+            }
+
+            .blog-img {
+                width: 100%;
+                max-height: 300px;
+            }
+
+            .blog-content p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header style="height: auto; min-height: auto;">
+        <a th:href="@{/carrito}" class="cart-button">
+            <img th:src="@{/public/img/shopping-car.svg}" alt="Carrito">
+        </a>
+        <nav class="sidebar">
+            <ul>
+                <img th:src="@{/public/img/Bioaire-Logo.avif}" alt="BioAire-Logo" id="logo-principal">
+                <li><a th:href="@{/}">Inicio</a></li>
+                <li><a th:href="@{/catalogo.html}">Ver catalogo</a></li>
+                <li><a th:href="@{/blog.html}">Blog</a></li>
+                <li><a th:href="@{/pq.html}">Preguntas Frecuentes</a></li>
+                <li class="salir-nav" style="display: none;" onclick="cerrarSidebar()">Salir</li>
+            </ul>
+        </nav>
+        <div class="toggle" onclick="verSidebar()">
+            <img th:src="@{/public/img/toggle.svg}" alt="tg"
+                style="margin-top: 1vh; align-self: center; justify-self: center;" width="30px" height="30px">
+        </div>
+    </header>
+
+    <main style="padding-top: 5vh; background-color: #f5f5f5;">
+        <div class="blog-content">
+            <a th:href="@{/blog.html}" class="back-link">← Volver al Blog</a>
+
+            <h1>¿Por qué elegir un buen ventilador?</h1>
+            <p class="date">Publicado el 30 de Noviembre, 2025</p>
+            
+            <div class="blog-section">
+                <img th:src="@{/public/img/fan5.webp}" alt="Ventilador moderno" class="blog-img">
+                <p>
+                    En climas cálidos como el de Tarapoto, mantener el hogar fresco no es un lujo, es una necesidad.
+                    Muchas personas dudan entre adquirir un aire acondicionado o un ventilador, pero la verdad es que un
+                    buen ventilador sigue siendo una de las opciones más eficientes y saludables para la climatización
+                    del hogar. Además de consumir menos energía, los ventiladores modernos ofrecen múltiples
+                    velocidades, modos de oscilación y diseños que optimizan la circulación del aire sin resecar el
+                    ambiente ni causar cambios bruscos de temperatura. Su mantenimiento suele ser sencillo: limpieza
+                    periódica de aspas y filtros, comprobación del motor y, en modelos con control remoto, el reemplazo
+                    ocasional de baterías. Para elegir el ventilador adecuado conviene considerar el tamaño del espacio,
+                    la potencia (medida en W o en CFM), el nivel de ruido y funciones extras como temporizador,
+                    regulación de intensidad y control de humedad. En muchos casos, combinar un ventilador con un aire
+                    acondicionado permite elevar la temperatura setpoint y reducir el consumo eléctrico total,
+                    aprovechando la brisa para distribuir mejor el aire frío. Finalmente, invertir en un ventilador de
+                    calidad es una decisión inteligente que aporta confort, ahorro y una mejor ventilación interior,
+                    especialmente en zonas con altas temperaturas durante todo el año.
+                </p>
+            </div>
+
+            <h2>Beneficios de una buena circulación de aire</h2>
+            
+            <div class="blog-section reverse-mobile">
+                <p>
+                    Un ventilador de calidad no solo "mueve aire". Su función principal es crear una brisa constante que
+                    facilita la evaporación de la transpiración en la piel, lo que reduce la sensación térmica corporal
+                    en varios grados. Además, evita que el aire se estanque, reduciendo la acumulación de humedad y
+                    olores. Los modelos con motores eficientes y aspas bien diseñadas mejoran la circulación con menor
+                    consumo energético y menos ruido; funciones como oscilación, temporizador y regulación de velocidad
+                    permiten adaptarlo a distintos ambientes y horarios. Colocarlo estratégicamente (por ejemplo, cerca
+                    de una ventana o apuntando hacia zonas de paso) maximiza su efecto; combinado con un aire
+                    acondicionado o un purificador, un buen ventilador ayuda a distribuir mejor el aire frío y a mejorar
+                    la calidad del aire interior. Para mantener su rendimiento, realiza limpieza periódica de aspas y
+                    filtros y revisa el estado del motor y el eje.
+                </p>
+                <img th:src="@{/public/img/fan1.png}" alt="Circulación de aire" class="blog-img">
+            </div>
+
+            <h2>Tipos de ventiladores para cada necesidad</h2>
+            <p>
+                En BioAire entendemos que cada espacio es diferente. Por eso ofrecemos diversas soluciones:
+            </p>
+            <ul style="margin-left: 3rem;">
+                <li><strong>Ventiladores de Techo:</strong> Ideales para dormitorios y salas de estar. Distribuyen el
+                    aire de manera uniforme y son silenciosos.</li>
+                <li><strong>Ventiladores de Pared:</strong> Perfectos para espacios reducidos o con mucho tránsito, como
+                    cocinas o talleres.</li>
+                <li><strong>Ventiladores de Mesa:</strong> La opción portátil para tener frescura directa mientras
+                    trabajas o estudias.</li>
+                <li><strong>Ventiladores Industriales:</strong> Potencia pura para grandes áreas comerciales.</li>
+            </ul>
+
+            <h2>Eficiencia Energética</h2>
+            <p>
+                A diferencia de los aires acondicionados que consumen mucha electricidad, un ventilador moderno consume
+                apenas una fracción de esa energía. Esto se traduce en un ahorro significativo en tu recibo de luz a fin
+                de mes,
+                sin sacrificar el confort.
+            </p>
+
+            <h2>Conclusión</h2>
+            <p>
+                Elegir un buen ventilador es invertir en confort, salud y economía. Te invitamos a revisar nuestro
+                catálogo
+                para encontrar el modelo que mejor se adapte a tu estilo de vida.
+            </p>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a th:href="@{/catalogo.html}"><button style="width: 200px;">Ver Catálogo</button></a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Otros enlaces de interes</p>
+        <nav>
+            <a href="https://google.com">Google</a>
+            <a href="https://facebook.com">Nuestro Facebook</a>
+            <a th:href="@{/404.html}">Politica de privacidad</a>
+            <a href="https://www.shoppiingperu.com/">Pagina oficial</a>
+            <a href="https://github.com/Brayan2008">Mi GitHub</a>
+            <a th:href="@{/admin/producto/nuevo}">Admin</a>
+        </nav>
+        <div id="despedida">
+            <p>2025 - Jugando con html, llorando con css, perdido con js</p>
+            <p>Hecho con horas de sueño por: <span>Bmaster</span></p>
+        </div>
+    </footer>
+
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/scripts.js}"></script>
+</body>
+
+</html>

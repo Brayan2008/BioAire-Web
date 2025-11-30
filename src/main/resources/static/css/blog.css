@@ -1,0 +1,141 @@
+@import url("./styles.css");
+
+header {
+
+    margin-bottom: 2vh;
+
+    @media (width<=425px) {
+        #portada {
+            .title {
+                font-size: 4.5rem;
+            }
+
+            h4 {
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+
+    #portada {
+        .title {
+            animation-duration: 2s;
+        }
+
+        h4 {
+            color: white;
+            font-size: 2.2rem;
+            padding-left: 1rem;
+
+            animation: mover-derecha 1s forwards;
+        }
+    }
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: black;
+    @media (width<=425px) {
+        padding: 2vh 0vh 0vh 0vh;
+        font-size: 2rem;
+    }
+}
+
+@media (width<=425px) {
+    h1{font-size: 3rem;}
+    h3{font-size: 1.5rem;}
+}
+
+main {
+    p {
+        color: black
+    }
+
+    animation: none;
+
+    .subTitulo {
+        height: 12vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        margin-bottom: 2vh;
+    }
+
+    section.centrar {
+        padding: 1vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .post {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            background-color: bisque;
+            box-shadow: 1px 3px 25px;
+            border-radius: 1.2rem;
+            height: 70vh;
+            width: 30vw;
+            text-align: center;
+            padding: 2vh;
+            transition: background-color 0.4s ease;
+            animation: mover-izquierda 0.5s forwards;
+            animation-timeline: view(block 70% auto);
+
+            img {
+                width: 100%;
+                border-radius: 1.2rem;
+            }
+
+            &:hover {
+                background-color: rgb(240, 188, 121);
+            }
+        }
+
+        @media (width <=425px) {
+            flex-direction: column;
+            justify-content: space-around;
+            height: 220vh;
+
+            .post {
+                width: 90vw;
+            }
+        }
+    }
+
+    section.otras {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        margin: 3vh 0vh;
+
+        section {
+            background-color: bisque;
+            height: 30vh;
+            overflow-y: hidden;
+            overflow-x: hidden;
+            padding: 0vw;
+            justify-content: space-between;
+            margin-top: 2vh;
+            animation: mover-derecha 2s forwards;
+            animation-timeline: view(block 60% auto);
+
+            &:hover {
+                background-color: rgb(240, 188, 121);
+            }
+
+        }
+
+        @media (width<=425px) {
+            section {
+                height: fit-content;
+                padding: 2vh;
+                margin: 2vh 0vh;
+            }
+        }
+
+    }
+}

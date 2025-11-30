@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ES" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>Finalizar Compra | BioAire - Tarapoto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/catalogoStyles.css}">
+    <style>
+        .checkout-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: flex;
+            gap: 2rem;
+        }
+        .checkout-form {
+            flex: 2;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .order-summary {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            height: fit-content;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid #ddd;
+        }
+        .btn-confirm {
+            display: block;
+            width: 100%;
+            background-color: #28a745;
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 2rem;
+            transition: background-color 0.3s;
+        }
+        .btn-confirm:hover {
+            background-color: #218838;
+        }
+        @media (max-width: 768px) {
+            .checkout-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a th:href="@{/carrito}" class="cart-button">
+            <img th:src="@{/public/img/shopping-car.svg}" alt="Carrito">
+        </a>
+        <nav class="sidebar">
+            <ul>
+                <img th:src="@{/public/img/Bioaire-Logo.avif}" alt="BioAire-Logo" id="logo-principal">
+                <li><a th:href="@{/}">Inicio</a></li>
+                <li><a th:href="@{/catalogo.html}">Ver catalogo</a></li>
+                <li><a th:href="@{/blog.html}">Blog</a></li>
+                <li><a th:href="@{/pq.html}">Preguntas Frecuentes</a></li>
+                <li class="salir-nav" style="display: none;" onclick="cerrarSidebar()">Salir</li>
+            </ul>
+        </nav>
+        <div class="toggle" onclick="verSidebar()">
+            <img th:src="@{/public/img/toggle.svg}" alt="tg" style="margin-top: 1vh; align-self: center; justify-self: center;"
+                width="30px" height="30px">
+        </div>
+        
+        <div id="anuncios">
+            <h3 class="title">Finalizar Compra</h3>
+            <div>
+                <p>Ingresa tus datos para completar el pedido</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="checkout-container">
+        <div class="checkout-form">
+            <h2>Datos de Envío y Contacto</h2>
+            <form th:action="@{/carrito/checkout}" method="post" th:object="${cliente}">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+                </div>
+                <div class="form-group">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" id="apellido" name="apellido" required placeholder="Tu apellido">
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" name="email" required placeholder="ejemplo@correo.com">
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="tel" id="telefono" name="telefono" required placeholder="999 999 999">
+                </div>
+                <div class="form-group">
+                    <label for="direccion">Dirección de Entrega</label>
+                    <input type="text" id="direccion" name="direccion" required placeholder="Av. Principal 123">
+                </div>
+                <div class="form-group">
+                    <label for="ciudad">Ciudad</label>
+                    <input type="text" id="ciudad" name="ciudad" required placeholder="Tarapoto">
+                </div>
+                
+                <button type="submit" class="btn-confirm">Confirmar Pedido</button>
+            </form>
+        </div>
+
+        <div class="order-summary">
+            <h2>Resumen del Pedido</h2>
+            <div th:each="item : ${items}" class="summary-item">
+                <div>
+                    <strong th:text="${item.producto.nombre}">Producto</strong>
+                    <br>
+                    <small th:text="'Cant: ' + ${item.cantidad}">Cant: 1</small>
+                </div>
+                <span th:text="'S/. ' + ${item.total}">S/. 0.00</span>
+            </div>
+            
+            <div class="summary-total">
+                <span>Total a Pagar</span>
+                <span th:text="'S/. ' + ${total}">S/. 0.00</span>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Otros enlaces de interes</p>
+        <nav>
+            <a href="https://google.com">Google</a>
+            <a href="https://facebook.com">Nuestro Facebook</a>
+            <a th:href="@{/404.html}">Politica de privacidad</a>
+            <a href="https://www.shoppiingperu.com/">Pagina oficial</a>
+                  <a href="https://github.com/Brayan2008">Mi GitHub</a>
+      <a th:href="@{/admin/producto/nuevo}">Admin</a>
+    </nav>
+        </nav>
+        <div id="despedida">
+            <p>2025 - Jugando con html, llorando con css, perdido con js</p>
+            <p>Hecho con horas de sueño por: <span>Bmaster</span></p>
+        </div>
+    </footer>
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/scripts.js}"></script>
+</body>
+
+</html>

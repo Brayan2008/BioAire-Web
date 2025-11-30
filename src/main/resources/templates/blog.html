@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ES" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>Blog | BioAire - Tarapoto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/blog.css}">
+</head>
+
+<body>
+    <header>
+        <a th:href="@{/carrito}" class="cart-button">
+            <img th:src="@{/public/img/shopping-car.svg}" alt="Carrito">
+        </a>
+        <nav class="sidebar">
+            <ul>
+                <img th:src="@{/public/img/Bioaire-Logo.avif}" alt="BioAire-Logo" id="logo-principal">
+                <li><a th:href="@{/}">Inicio</a></li>
+                <li><a th:href="@{/catalogo.html}">Ver catalogo</a></li>
+                <li><a th:href="@{/blog.html}">Blog</a></li>
+                <li><a th:href="@{/pq.html}">Preguntas Frecuentes</a></li>
+                <li class="salir-nav" style="display: none;" onclick="cerrarSidebar()">Salir</li>
+            </ul>
+        </nav>
+        <div class="toggle" onclick="verSidebar()">
+            <img th:src="@{/public/img/toggle.svg}" alt="tg" style="margin-top: 1vh; align-self: center; justify-self: center;"
+                width="30px" height="30px">
+        </div>
+        <div id="portada">
+            <div>
+                <h4>BLOG</h4>
+                <h1 class="title">¿Aire acondicionado <span>o un</span> ventilador? </h1>
+            </div>
+            <img class="fan" th:src="@{/public/img/aireAcondicionado2.png}" alt="VentiladorPortada">
+        </div>
+    </header>
+    <main>
+        <section class="subTitulo">
+            <h1>Conoce nuestro blog</h1>
+            <h3>
+                Busca el como y porque deberias comprar nuestros productos
+            </h3>
+        </section>
+        <section class="centrar">
+            <div class="post" onclick="window.location.href='/blog/ventiladores'" style="cursor: pointer;">
+                <img th:src="@{/public/img/fan5.webp}" alt="">
+                <h2>¿Por qué elegir un buen ventilador?</h2>
+                <p>
+                    Un ventilador de calidad no solo refresca el ambiente, también ayuda a mantener el aire circulando y
+                    reduce la sensación de calor. En BioAire ofrecemos modelos para cada necesidad: de techo, pared,
+                    mesa y portátiles.
+                </p>
+            </div>
+            <div class="post" onclick="window.location.href='/blog/ventiladores'" style="cursor: pointer;">
+                <img th:src="@{/public/img/aire-acodicionado.jpg}" alt="">
+                <h2>Mantenimiento de tu Aire Acondicionado</h2>
+                <p>
+                    Para garantizar la eficiencia y durabilidad de tu equipo, es crucial realizar limpiezas periódicas de filtros
+                    y revisiones técnicas. Un mantenimiento adecuado reduce el consumo eléctrico y previene averías costosas.
+                </p>
+            </div>
+            <div class="post" onclick="window.location.href='/blog/ventiladores'" style="cursor: pointer;">
+                <img th:src="@{/public/img/fan10.webp}" alt="">
+                <h2>Ventiladores vs Aire Acondicionado</h2>
+                <p>
+                    ¿No sabes cuál elegir? Los ventiladores son ideales para circulación de aire y bajo consumo, mientras que
+                    el aire acondicionado es la solución definitiva para bajar la temperatura en días extremos. ¡Descubre cuál se adapta a ti!
+                </p>
+            </div>
+        </section>
+        <hr>
+        <section class="otras">
+            <h1>Otras entradas</h1>
+            <section class="recuadro">
+                <img th:src="@{/public/img/ventiladorTecho.jpg}" alt="Ventilador de techo">
+                <div class="centrar">
+                    <h2>Ventilador de techo AirMaster 3000</h2>
+                    <p>
+                        Potente ventilador de alta velocidad ideal para grandes espacios. Ofrece máxima circulación de
+                        aire y
+                        eficiencia
+                        energética.
+                    </p>
+                                <a th:href="@{/producto.html}"><button class="ver-producto">Ver más detalles</button></a>
+
+                </div>
+            </section>
+            <section class="recuadro">
+                <img th:src="@{/public/img/fan12.webp}" alt="Ventilador de techo">
+                <div class="centrar">
+                    <h2>Ventilador de mesa Indema C34H2</h2>
+                    <p>
+                        Ventilador pequeño para llevar a todas partes, los beneficios que tiene son muchas, puedes estar
+                        en el parque,
+                        en el auto, en tu cuarto.
+                    </p>
+
+                                <a th:href="@{/producto.html}"><button class="ver-producto">Ver más detalles</button></a>
+
+                </div>
+            </section>
+            <section class="recuadro">
+                <img th:src="@{/public/img/fan8.webp}" alt="Ventilador Industrial">
+                <div class="centrar">
+                    <h2>Ventilador Industrial PowerMax</h2>
+                    <p>
+                        Diseñado para espacios comerciales y talleres. Su motor de alto rendimiento garantiza un flujo de aire constante
+                        incluso en las condiciones más exigentes. Durabilidad y potencia en un solo equipo.
+                    </p>
+
+                                <a th:href="@{/producto.html}"><button class="ver-producto">Ver más detalles</button></a>
+
+                </div>
+            </section>
+            <section class="recuadro">
+                <img th:src="@{/public/img/aire-acondicionado2.webp}" alt="Ventilador de techo">
+                <div class="centrar">
+                    <h2>Aire acondicionado ColdKing 3500</h2>
+                    <p>
+                        Aire acondicionado apto para personas que no estan acostumbrados al calor de la selva. Tiene
+                        niveles de frio desde 5C° hasta 20°C
+                    </p>
+
+                                <a th:href="@{/producto.html}"><button class="ver-producto">Ver más detalles</button></a>
+
+                </div>
+            </section>
+        </section>
+    </main>
+    <footer>
+        <p>Otros enlaces de interes</p>
+        <nav>
+            <a href="https://google.com">Google</a>
+            <a href="https://facebook.com">Nuestro Facebook</a>
+            <a th:href="@{/404.html}">Politica de privacidad</a>
+            <a href="https://www.shoppiingperu.com/">Pagina oficial</a>
+                  <a href="https://github.com/Brayan2008">Mi GitHub</a>
+      <a th:href="@{/admin/producto/nuevo}">Admin</a>
+    </nav>
+        </nav>
+        <div id="despedida">
+            <p>2025 - Jugando con html, llorando con css, perdido con js</p>
+            <p>Hecho con horas de sueño por: <span>Bmaster</span></p>
+        </div>
+    </footer>
+
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/scripts.js}"></script>
+</body>
+
+</html>

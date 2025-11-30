@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Nuevo Producto | Admin BioAire</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/nuevo-producto.css}">
+</head>
+
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1>Agregar Nuevo Producto</h1>
+            <a th:href="@{/}" class="btn-back">Volver al Inicio</a>
+        </header>
+
+        <div class="form-container">
+            <form th:action="@{/admin/producto/guardar}" th:object="${producto}" method="post"
+                enctype="multipart/form-data" class="product-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre del Producto</label>
+                    <input type="text" id="nombre" th:field="*{nombre}" placeholder="Ej: Ventilador Turbo 3000"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="descripcion">Descripción</label>
+                    <textarea id="descripcion" th:field="*{descripcion}" rows="4" placeholder="Detalles del producto..."
+                        required></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="precio">Precio (S/.)</label>
+                        <input type="number" id="precio" step="0.1" th:field="*{precio}" placeholder="0.00" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descuento">Descuento</label>
+                        <input type="number" id="descuento" step="0.1"  th:field="*{descuento}" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="stock">Stock</label>
+                        <input type="number" id="stock" th:field="*{stock}" placeholder="0" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="categoria">Categoría</label>
+                        <select id="categoria" th:field="*{categoria}" required>
+                            <option value="Ventiladores">Ventiladores</option>
+                            <option value="Aire Acondicionado">Aire Acondicionado</option>
+                            <option value="Repuestos">Repuestos</option>
+                            <option value="Otros">Otros</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="marca">Marca</label>
+                        <input type="text" id="marca" th:field="*{marca}" placeholder="Marca del producto" required>
+                    </div>
+                </div>
+
+                <!-- Additional fields based on Producto model -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="modelo">Modelo</label>
+                        <input type="text" id="modelo" th:field="*{modelo}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="potencia">Potencia (W)</label>
+                        <input type="number" id="potencia" step="0.1" th:field="*{potencia}">
+                    </div>
+                    <div class="form-group">
+                        <label for="velocidad">Velocidad (RPM)</label>
+                        <input type="number" id="velocidad" step="0.1" th:field="*{velocidad}">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="numeroAspas">Numero de aspas</label>
+                        <input type="number" id="numeroAspas" th:field="*{numeroAspas}">
+                    </div>
+                    <div class="form-group">
+                        <label for="garantia">Garantía (meses)</label>
+                        <input type="number" id="garantia" th:field="*{garantia}">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="diametro">Diametro (cm)</label>
+                        <input type="number" id="diametro" th:field="*{diametro}">
+                    </div>
+                    <div class="form-group">
+                        <label for="tipoInstalacion">Tipo de Instalación</label>
+                        <input type="text" id="tipoInstalacion" th:field="*{tipoInstalacion}">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="material">Material</label>
+                        <input type="text" id="material" th:field="*{material}">
+                    </div>
+                    <div class="form-group">
+                        <label for="voltaje">Voltaje (V)</label>
+                        <input type="number" id="voltaje" step="0.1" th:field="*{voltaje}">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="controlRemoto">Control remoto</label>
+                        <select id="controlRemoto" th:field="*{controlRemoto}" required>
+                            <option value="true">Si</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="peso">Peso (kg)</label>
+                        <input type="number" id="peso" step="0.1" th:field="*{peso}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="imagen">Imagen Principal</label>
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="imagen" name="imagen1" accept="image/*">
+                    </div>
+                    <small>Si no seleccionas una imagen, se usará una por defecto.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="imagen2">Imagen 2 (Opcional)</label>
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="imagen2" name="imagen2" accept="image/*">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="imagen3">Imagen 3 (Opcional)</label>
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="imagen3" name="imagen3" accept="image/*">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-save">Guardar Producto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

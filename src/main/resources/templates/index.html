@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ES" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <title>BioAire - Tarapoto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+  <header>
+    <a th:href="@{/carrito}" class="cart-button">
+      <img th:src="@{/public/img/shopping-car.svg}" alt="Carrito">
+    </a>
+    <nav class="sidebar">
+      <ul>
+        <img th:src="@{/public/img/Bioaire-Logo.avif}" alt="BioAire-Logo" id="logo-principal">
+        <li><a href="#portada">Inicio</a></li>
+        <li><a th:href="@{/catalogo.html}">Ver catalogo</a></li>
+        <li><a th:href="@{/blog.html}">Blog</a></li>
+        <li><a th:href="@{/pq.html}">Preguntas Frecuentes</a></li>
+        <li class="salir-nav" style="display: none;" onclick="cerrarSidebar()">Salir</li>
+      </ul>
+    </nav>
+    <div class="toggle" onclick="verSidebar()">
+      <img th:src="@{/public/img/toggle.svg}" alt="tg"
+        style="margin-top: 1vh; align-self: center; justify-self: center;" width="30px" height="30px">
+    </div>
+
+    <div id="portada">
+      <h1 class="title">
+        <span>Refresca</span> tus dias con nuestros productos
+      </h1>
+      <img class="fan" th:src="@{/public/img/fan1.png}" alt="VentiladorPortada">
+    </div>
+
+    <a href="#pro" style="align-self: center;">Desliza abajo</a>
+  </header>
+
+  <main>
+    <section id="pro" class="recuadro">
+      <video th:src="@{/public/video/videofan1.mp4}" autoplay muted loop alt="Ventilador de techo"></video>
+      <div class="centrar">
+        <h2>Ventilador de techo AirMaster 3000</h2>
+        <p>
+          Potente ventilador de alta velocidad ideal para grandes espacios. Ofrece máxima circulación de aire y
+          eficiencia
+          energética.
+        </p>
+        <div class="centrar-horizontal info">
+          <div class="cuadro centrar">
+            <p>Velocidad</p>
+            <img th:src="@{/public/img/clockpng.png}" alt="Reloj">
+            <p>1800 rpm</p>
+          </div>
+          <div class="cuadro centrar">
+            <p>Garantia</p>
+            <img th:src="@{/public/img/guaranteed.png}" alt="Reloj">
+            <p>5 años</p>
+          </div>
+          <div class="cuadro centrar">
+            <p> Aspas: </p>
+            <img th:src="@{/public/img/fanAspas.png}" alt="Reloj">
+            <p>3 aspas</p>
+          </div>
+          <div class="cuadro centrar">
+            <p>Instalacion: </p>
+            <img th:src="@{/public/img/support.png}" alt="Reloj">
+            <p>Incluida</p>
+          </div>
+        </div>
+        <a th:href="@{/catalogo.html}"><button class="ver-producto">Ver más detalles</button></a>
+
+      </div>
+    </section>
+
+    <section class="recuadro">
+      <div class="centrar">
+        <h2>Ventilador de techo AirMaster 3000</h2>
+        <p>
+          Potente ventilador de alta velocidad ideal para grandes espacios. Ofrece máxima circulación de aire y
+          eficiencia
+          energética.
+        </p>
+        <div class="centrar-horizontal info">
+          <div class="cuadro centrar">
+            <p>Velocidad</p>
+            <img th:src="@{/public/img/clockpng.png}" alt="Reloj">
+            <p>1200 rpm</p>
+          </div>
+          <div class="cuadro centrar">
+            <p>Garantia</p>
+            <img th:src="@{/public/img/guaranteed.png}" alt="Reloj">
+            <p>2 años</p>
+          </div>
+          <div class="cuadro centrar">
+            <p> Aspas: </p>
+            <img th:src="@{/public/img/fanAspas.png}" alt="Reloj">
+            <p>5 aspas</p>
+          </div>
+          <div class="cuadro centrar">
+            <p>Instalacion: </p>
+            <img th:src="@{/public/img/support.png}" alt="Reloj">
+            <p>Incluida</p>
+          </div>
+        </div>
+        <a th:href="@{/catalogo.html}"><button class="ver-producto">Ver más detalles</button></a>
+
+      </div>
+      <img id="reverse" th:src="@{/public/img/ventiladorTecho.jpg}" alt="Ventilador de techo">
+    </section>
+
+    <section class="recuadro">
+      <img th:src="@{/public/img/aire-acodicionado.jpg}" alt="Ventilador de techo">
+      <div class="centrar contenido">
+        <h2>Aire Acondicionado FrioCold 3300</h2>
+        <p>
+          Aire acondicionado de alta eficiencia que proporciona un enfriamiento rápido y uniforme. Ideal para mantener
+          ambientes frescos y confortables durante todo el año, con bajo consumo energético y funcionamiento silencioso.
+        </p>
+        <div class="centrar-horizontal info">
+          <div class="cuadro centrar">
+            <p>Garantia</p>
+            <img th:src="@{/public/img/guaranteed.png}" alt="Reloj">
+            <p>1 año</p>
+          </div>
+          <div class="cuadro centrar">
+            <p> Temperatura: </p>
+            <img th:src="@{/public/img/fanAspas.png}" alt="Reloj">
+            <p>16C°</p>
+          </div>
+          <div class="cuadro centrar">
+            <p>Instalacion: </p>
+            <img th:src="@{/public/img/support.png}" alt="Reloj">
+            <p>Incluida</p>
+          </div>
+        </div>
+        <a th:href="@{/catalogo.html}"><button class="ver-producto">Ver más detalles</button></a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Otros enlaces de interes</p>
+    <nav>
+      <a href="https://google.com">Google</a>
+      <a href="https://facebook.com">Nuestro Facebook</a>
+      <a th:href="@{/404.html}">Politica de privacidad</a>
+      <a href="https://www.shoppiingperu.com/">Pagina oficial</a>
+      <a href="https://github.com/Brayan2008">Mi GitHub</a>
+      <a th:href="@{/admin/producto/nuevo}">Admin</a>
+    </nav>
+    <div id="despedida">
+      <p>2025 - Jugando con html, llorando con css, perdido con js</p>
+      <p>Hecho con horas de sueño por: <span>Bmaster</span>💜💛❤️</p>
+    </div>
+  </footer>
+  <script th:src="@{/js/jquery.js}"></script>
+  <script th:src="@{/js/scripts.js}"></script>
+  <script th:if="${param.compraExitosa}">
+    alert("¡Gracias por tu compra! Tu pedido ha sido procesado exitosamente.");
+  </script>
+</body>
+
+</html>
